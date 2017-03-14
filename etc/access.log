@@ -194,3 +194,7 @@
 127.0.0.1 - - [13/Mar/2017:18:57:53 +0300] "POST /ask/qa/list HTTP/1.1" 403 1463 "http://127.0.0.1/ask/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/56.0.2924.76 Chrome/56.0.2924.76 Safari/537.36"
 127.0.0.1 - - [13/Mar/2017:18:57:58 +0300] "GET /ask/ HTTP/1.1" 200 491 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/56.0.2924.76 Chrome/56.0.2924.76 Safari/537.36"
 127.0.0.1 - - [13/Mar/2017:18:58:05 +0300] "POST / HTTP/1.1" 200 287 "http://127.0.0.1/ask/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/56.0.2924.76 Chrome/56.0.2924.76 Safari/537.36"
+127.0.0.1 - - [14/Mar/2017:15:38:53 +0300] "GET / HTTP/1.1" 400 56379 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/56.0.2924.76 Chrome/56.0.2924.76 Safari/537.36"
+127.0.0.1 - - [14/Mar/2017:15:38:59 +0300] "GET /favicon.ico HTTP/1.1" 400 56486 "http://127.0.0.1/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/56.0.2924.76 Chrome/56.0.2924.76 Safari/537.36"
+127.0.0.1 - - [14/Mar/2017:16:14:26 +0300] "GET / HTTP/1.1" 200 35 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/56.0.2924.76 Chrome/56.0.2924.76 Safari/537.36"
+127.0.0.1 - - [14/Mar/2017:16:14:36 +0300] "GET /favicon.ico HTTP/1.1" 404 981 "http://127.0.0.1/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/56.0.2924.76 Chrome/56.0.2924.76 Safari/537.36"
