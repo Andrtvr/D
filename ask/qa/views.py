@@ -7,6 +7,8 @@ from qa.models import Question, Answer
 from qa.forms import AskForm, AnswerForm
 from django import forms
 from django.core.urlresolvers import reverse
+from django.utils import timezone
+from django.contrib.auth.models import AnonymousUser, User
 
 
 def test(request, *args, **kwargs):
@@ -72,16 +74,86 @@ def question_detail(request, pk):
         'question': question,
         'answers': answers,
         'form': form,
+       # 'pk': pk,
     })
 
 
 def question_ask(request):
     if request.method=='POST':
         form = AskForm(request.POST)
-        if form.is_valid():
-            ask = form.save()
-            url = reverse('question_detail', args=[ask.id])
-            return HttpResponseRedirect(url)
+
+        if request.user.is_authenticated():
+            pass
+        else:
+
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = User(id=1)
+                post.added_at = timezone.now()
+                post.save()
+                url = reverse('question_detail', args=[post.id])
+
+                return HttpResponseRedirect(url)
     else:
         form = AskForm()
     return render(request, 'qa/ask.html', {'form': form})
+
+
+def question_answer(request, pk):
+
+    if request.method == 'POST':
+        '''
+        form = AnswerForm(request.POST)
+
+        if request.user.is_authenticated():
+            pass
+        else:
+
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = User(id=1)
+                post.added_at = timezone.now()
+                post.question = Question(id=pk)
+                post.save()
+                url = reverse('answer_st', args=[pk])
+
+
+                return HttpResponseRedirect(url)
+            '''
+        url = reverse('answer_st', args=[pk])
+        return HttpResponseRedirect(url)
+    else:
+
+        return HttpResponseRedirect('/', args=0)
+
+def answer_st(request, pk):
+    if request.method=='POST':
+        form = AnswerForm(request.POST)
+
+        if request.user.is_authenticated():
+            pass
+        else:
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = User(id=1)
+                #q = Question.objects.filter(id=2)
+                post.added_at = timezone.now()
+                post.question = Question(id=pk)
+                post.save()
+
+                return HttpResponseRedirect('/answers/')
+    else:
+        form = AskForm()
+    return render(request, 'qa/answer.html', {'form': form})
+
+def answer_list(request):
+    answ = Answer.objects.all()
+
+    page, paginator = paginate(request, answ)
+    paginator.baseurl = reverse('answers') + '?page='
+
+    return render(request, 'qa/answers.html', {
+        'answ': page.object_list,
+        'page': page,
+        'paginator': paginator,
+    })
